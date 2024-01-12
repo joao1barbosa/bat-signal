@@ -7,16 +7,14 @@ interface HelpButtonProps{
 
 export function HelpButton(props: HelpButtonProps) {
   return (
-    <>
-        <Pressable
-            onPress={ ()=>{props.navigation.navigate('FormPage') }}
-            style={styles.button}
-        >
+    <Pressable
+      onPress={ ()=>{props.navigation.navigate('FormPage')}}
+      style={styles.button}
+    >
 
-            <Text style={styles.text}>HELP ME!</Text>
+      <Text style={styles.text}>HELP ME!</Text>
         
-        </Pressable>
-    </>
+    </Pressable>
   );
 }
 

@@ -4,13 +4,16 @@ import { StyleSheet, View, Image } from 'react-native';
 import { BatForm } from '../components/BatForm';
 import batLogo from "../../assets/batIcon.png";
 
+interface FormPageProps{
+  navigation:any
+}
 
-export function FormPage() {
+export function FormPage(props:FormPageProps) {
   return (
     <View style={styles.main}>
       <Image source={batLogo} style={styles.image}/>
       <View style={styles.form}>
-        <BatForm/>
+        <BatForm navigation={props.navigation}/>
       </View>
     </View>
   );
@@ -26,8 +29,8 @@ const styles = StyleSheet.create({
     backgroundColor:'grey'
   },
   image: {
-    resizeMode: 'cover',
     flex: 1,
+    resizeMode: 'cover',
     position: 'absolute',
     width: 330,
     height: 190,
@@ -35,10 +38,13 @@ const styles = StyleSheet.create({
   },
   form:{
     flex:1,
+    flexDirection: 'column',
     height: '100%',
     width: '100%',
     backgroundColor: 'transparent',
     justifyContent: 'center',
-    position: 'absolute'
+    alignItems: 'center',
+    position: 'relative',
+    borderWidth:10,
   }
 });

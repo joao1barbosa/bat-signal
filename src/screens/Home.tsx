@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 
 import { Logo } from '../components/MainLogo';
 import { HelpButton } from '../components/HelpButton';
@@ -13,9 +13,7 @@ export function Home( props: HomeProps ) {
     <View style={styles.main}>
       <View style={styles.center}>
         <Logo/>
-
         <HelpButton navigation={props.navigation}/>
-
       </View>
     </View>
   );
