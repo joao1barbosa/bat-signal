@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "batsignal-dio",
-    "slug": "batsignal-dio",
+    "name": "bat-signal",
+    "slug": "bat-signal",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
