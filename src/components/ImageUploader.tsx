@@ -5,7 +5,7 @@ export function ImageUploader() {
   return (
     <Pressable style={styles.insertArea}>    
       <View style={styles.main}>
-        <Text style={styles.text}>Acrescente uma imagem</Text>
+        <Text style={styles.cameraEmoji}>📷</Text>
         <Text style={styles.text}>(se possível)</Text>
       </View>
     </Pressable>
@@ -21,8 +21,9 @@ const styles = StyleSheet.create({
     alignItems:'center',
     width: "100%",
     height: "80%",
+    marginBottom:30,
 
-    borderWidth: 6,
+    borderWidth: 5,
     borderBlockColor: 'black',
     borderRadius: 5,
   },
@@ -34,6 +35,9 @@ const styles = StyleSheet.create({
     opacity:0.3,
     width: '100%',
     height: '100%'
+  },
+  cameraEmoji:{
+    fontSize:60,
   },
   text:{
     fontSize:20,
