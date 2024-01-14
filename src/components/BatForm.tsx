@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, TextInput, Text, ScrollView } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
 
 import { ImageUploader } from './ImageUploader';
 import { SubmitButton } from '../components/SubmitButton';
@@ -28,11 +29,6 @@ export function BatForm(props: BatFormProps) {
 }
 
 const styles = StyleSheet.create({
-  scroll:{
-    flex: 1,
-    
-  },
-
   container: {
     flex: 0.7,
     flexDirection: 'column',

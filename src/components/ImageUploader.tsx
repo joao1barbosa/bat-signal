@@ -1,15 +1,40 @@
-import React from 'react';
-import { StyleSheet, View, Text, Pressable } from 'react-native';
+import React, {useState} from 'react';
+import { StyleSheet, View, Text, Pressable, Image } from 'react-native';
+import * as ImagePicker from 'expo-image-picker';
+
 
 export function ImageUploader() {
-  return (
-    <Pressable style={styles.insertArea}>    
-      <View style={styles.main}>
-        <Text style={styles.cameraEmoji}>📷</Text>
-        <Text style={styles.text}>(se possível)</Text>
-      </View>
-    </Pressable>
+  const [image, setImage] = useState<string | null>(null);
+  
+  async function selectImage() {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [1,1],
+      quality:1,
+    });
 
+    if(!result.canceled){
+      setImage(result.assets[0].uri);
+    }
+
+  }
+
+  return (
+    <Pressable style={styles.insertArea} onPress={selectImage}>
+          
+      {image 
+      ? 
+        <>        
+          <Image source={{ uri: image }} style={styles.main}/>
+        </>
+
+      : 
+        <View style={[styles.main, {opacity: 0.3}]}>
+          <Text style={styles.cameraEmoji}>📷</Text>
+          <Text style={styles.text}>(se possível)</Text>
+        </View>}
+    </Pressable>
   );
 }
 
@@ -32,7 +57,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems:'center',
     backgroundColor: 'white',
-    opacity:0.3,
+    opacity: 1,
     width: '100%',
     height: '100%'
   },
