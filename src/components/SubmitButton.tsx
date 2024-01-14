@@ -1,26 +1,48 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { StyleSheet, Text, Pressable, Modal, View, Image } from 'react-native';
+import { Audio } from 'expo-av';
 
 import blinkBatman from "../../assets/blinkBatman.png";
+import batmanTrasition from '../../assets/batmanTransition.mp3';
 
 interface SubmitButtonProps{
     navigation:any,
 }
 
-
 export function SubmitButton(props: SubmitButtonProps) {
   const [modalVisible, setModalVisible] = useState(false);
+  const [sound, setSound] = useState<undefined | Audio.Sound >(undefined);
+
+  async function playSound() {
+    console.log('Loading Sound');
+    const { sound } = await Audio.Sound.createAsync(batmanTrasition);
+    setSound(sound);
+
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    return sound
+      ? () => {
+          console.log('Unloading Sound');
+          sound.unloadAsync();
+        }
+      : undefined;
+  }, [sound]);
+
   
   function delay() {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         resolve(setModalVisible(false));
-      }, 1800)
+      }, 1600)
     });
   }
 
   function goBacktoMenu(props:SubmitButtonProps){
     setModalVisible(true);
+    playSound();
 
     delay().then(()=>{
       props.navigation.goBack()
