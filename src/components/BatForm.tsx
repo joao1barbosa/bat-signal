@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, TextInput, Text } from 'react-native';
+import { View, StyleSheet, TextInput, Text, ScrollView } from 'react-native';
 
 import { ImageUploader } from './ImageUploader';
 import { SubmitButton } from '../components/SubmitButton';
@@ -19,6 +19,7 @@ export function BatForm(props: BatFormProps) {
           style={styles.textInputer} 
           multiline={true} 
           placeholder='Descrição'
+          maxLength={78}
         />
       </View>
       <SubmitButton navigation={props.navigation}/>
@@ -27,13 +28,16 @@ export function BatForm(props: BatFormProps) {
 }
 
 const styles = StyleSheet.create({
+  scroll:{
+    flex: 1,
+    
+  },
+
   container: {
-    flex: 0.6,
+    flex: 0.7,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    // borderColor: 'white',
-    // borderWidth: 2,
     width: '80%',
   },
 

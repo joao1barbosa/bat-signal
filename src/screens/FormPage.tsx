@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Image } from 'react-native';
+import { StyleSheet, View, Image, KeyboardAvoidingView, Platform } from 'react-native';
 
 import { BatForm } from '../components/BatForm';
 import batLogo from "../../assets/batIcon.png";
@@ -12,9 +12,13 @@ export function FormPage(props:FormPageProps) {
   return (
     <View style={styles.main}>
       <Image source={batLogo} style={styles.image}/>
-      <View style={styles.form}>
-        <BatForm navigation={props.navigation}/>
-      </View>
+      <KeyboardAvoidingView 
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      style={styles.form}> 
+        <View style={styles.alignView}>
+          <BatForm navigation={props.navigation}/>
+        </View>
+        </KeyboardAvoidingView>
     </View>
   );
 }
@@ -24,9 +28,9 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor:'grey',
     borderWidth: 5,
     borderColor: 'black',
-    backgroundColor:'grey'
   },
   image: {
     flex: 1,
@@ -39,12 +43,18 @@ const styles = StyleSheet.create({
   form:{
     flex:1,
     flexDirection: 'column',
+    position: 'relative',
     height: '100%',
     width: '100%',
     backgroundColor: 'transparent',
     justifyContent: 'center',
     alignItems: 'center',
-    position: 'relative',
-    borderWidth:10,
+
+  },
+  alignView:{
+    flex: 1,
+    width:'100%',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
